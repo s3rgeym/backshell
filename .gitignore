@@ -1,0 +1,6 @@
+/.venv
+/urls.txt
+__pycache__
+.py[co]
+*.egg-info
+/dist
