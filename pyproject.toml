@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "webshell"
+version = "0.1.0"
+description = ""
+authors = ["Sergey M <tz4678@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.24.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.scripts]
+webshell = "webshell:main"
