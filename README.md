@@ -7,7 +7,7 @@ Command-line tool for backdoor exploitation.
 ```zsh
 $ pip install backshell
 
-$ backshell 'https://vuln.com/path/to/backdoor/ajax.php'
+$ backshell 'https://vuln.com/path/to/backdoor.php'
  ____             _     ____  _          _ _
 | __ )  __ _  ___| | __/ ___|| |__   ___| | |
 |  _ \ / _` |/ __| |/ /\___ \| '_ \ / _ \ | |
