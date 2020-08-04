@@ -20,7 +20,7 @@ try:
 except ImportError:
     readline = None
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 __author__ = 'Sergey M <tz4678@gmail.com>'
 __description__ = __doc__
 
@@ -142,7 +142,6 @@ class BackShell(Cmd):
                 logging.error(ex)
 
     def upload(self, contents: Union[bytes, str], path: str) -> str:
-        "upload local file to server"
         if isinstance(contents, str):
             contents = contents.encode()
         encoded = base64.b64encode(contents).decode()
@@ -180,8 +179,8 @@ class BackShell(Cmd):
                 print('Not modified')
             os.unlink(temp.name)
 
-    def do_cdx(self, arg: str) -> None:
-        "fixed cd"
+    def do_cwd(self, arg: str) -> None:
+        "change working directory"
         self.cwd = arg
 
     def default(self, command: str) -> None:
