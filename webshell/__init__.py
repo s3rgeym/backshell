@@ -33,7 +33,7 @@ class WebShell(Cmd):
         url: str,
         *,
         cwd: Optional[str] = None,
-        nohistory: Optional[bool] = False,
+        nohistory: bool = False,
         session: Optional[requests.Session] = None
     ) -> None:
         super().__init__()
