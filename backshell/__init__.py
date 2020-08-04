@@ -20,7 +20,7 @@ try:
 except ImportError:
     readline = None
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __author__ = 'Sergey M <yamldeveloper@proton.me>'
 __description__ = __doc__
 
