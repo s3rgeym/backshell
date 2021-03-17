@@ -1,5 +1,9 @@
 # BackShell by s3rgeym
 
+[![Downloads](https://pepy.tech/badge/backshell)](https://pepy.tech/project/backshell)
+[![Downloads](https://pepy.tech/badge/backshell/month)](https://pepy.tech/project/backshell)
+[![Downloads](https://pepy.tech/badge/backshell/week)](https://pepy.tech/project/backshell)
+
 Command-line tool for backdoor exploitation.
 
 ```zsh
